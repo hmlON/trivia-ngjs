@@ -6,35 +6,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection">
+  <link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header>
-    <div class="brand">Quiz game</div>
+    <div class="container">
+      <div class="brand">Quiz game</div>
+    </div>
   </header>
 
-  <div class="score">
-    <div class="score__correct"></div>
-    <div class="score__total"></div>
-  </div>
+  <div class="container">
+    <div class="score">
+      <div class="score__correct">Correct answers: 0</div>
+      <div class="score__total">Total questions: 0</div>
+    </div>
 
-  <div class="question">
-    <div class="question__id">Question #1</div>
-    <div class="question__category">Category: stuff</div>
-    <div class="question__text">How often do you sleep?</div>
-    <div class="question__result"></div>
-    <button class="question__skip">Skip</button>
-    <div class="letters-container">
-      <div class="letters letters--used">
-        <span class="letter">n</span>
-        <span class="letter">e</span>
-        <span class="letter">v</span>
+    <div class="container">
+      <div class="question">
+        <div class="question__id">Question #0.5</div>
+        <div class="question__category">Category: Fun</div>
+        <div class="question__text z-depth-1">Are you ready?</div>
+        <div class="question__skip">
+          <button class="btn">Skip</button>
+        </div>
+        <div class="letters-container z-depth-1">
+          <div class="letters letters--used">
+          </div>
+        </div>
+        <div class="letters letters--unused">
+          <span class="letter z-depth-2">y</span>
+          <span class="letter z-depth-2">e</span>
+          <span class="letter z-depth-2">s</span>
+        </div>
       </div>
-    </div>
-    <div class="letters letters--unused">
-      <span class="letter">e</span>
-      <span class="letter">r</span>
-    </div>
-  </div>
+    </div> <!-- container end -->
+  </div> <!-- container end -->
 
   <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>

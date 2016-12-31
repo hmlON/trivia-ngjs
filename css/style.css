@@ -1,0 +1,57 @@
+header {
+  background: #009688;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.brand {
+  font-size: 1.8em;
+}
+
+.score {
+  display: flex;
+  justify-content: space-between;
+}
+
+.question__id {
+  font-size: 2.5em;
+  text-align: center;
+}
+
+.question__category {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.question__text {
+  background: #f5f5f5;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.question__skip {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.letters-container {
+  height: 45vh;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.letters--used {
+}
+
+.letters {
+  display: flex;
+  justify-content: center;
+}
+
+.letter {
+  margin: 5px;
+  padding: 5px 10px;
+  cursor: default;
+}

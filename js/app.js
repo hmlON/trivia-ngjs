@@ -20,6 +20,8 @@ triviaApp.controller("QuestionsController", function QuestionsController($scope)
 
     if ($scope.question.answerUnusedLetters.length == 0){
       if (isUserAnswerCorrect()) {
+        $scope.answers_total += 1;
+        $scope.answers_correct += 1;
         diplayAnswerCorrectness();
         displayNewQuestion();
       } else {

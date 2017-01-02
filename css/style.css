@@ -35,7 +35,7 @@ header {
 }
 
 .letters-container {
-  height: 45vh;
+  height: 35vh;
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
@@ -55,4 +55,10 @@ header {
   margin: 5px;
   padding: 5px 10px;
   cursor: pointer;
+}
+
+@media (max-width: 320px) {
+  .letters-container {
+    height: 20vh;
+  }
 }

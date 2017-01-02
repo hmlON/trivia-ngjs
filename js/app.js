@@ -1,7 +1,7 @@
 var triviaApp = angular.module('triviaApp', []);
 
 triviaApp.controller("QuestionsController", function QuestionsController($scope) {
-  var welcome_question = {
+  var welcomeQuestion = {
     id: 0,
     answer: "YES",
     answerUsedLetters: [],
@@ -10,18 +10,18 @@ triviaApp.controller("QuestionsController", function QuestionsController($scope)
     category: "Fun"
   };
 
-  $scope.answers_total = 0;
-  $scope.answers_correct = 0;
-  $scope.question = welcome_question
+  $scope.answersTotal = 0;
+  $scope.answersCorrect = 0;
+  $scope.question = welcomeQuestion
 
-  $scope.useLetter = function(letter_index) {
-    var letter = $scope.question.answerUnusedLetters.splice(letter_index, 1)[0];
+  $scope.useLetter = function(letterIndex) {
+    var letter = $scope.question.answerUnusedLetters.splice(letterIndex, 1)[0];
     $scope.question.answerUsedLetters.push(letter);
 
     if ($scope.question.answerUnusedLetters.length == 0){
       if (isUserAnswerCorrect()) {
-        $scope.answers_total += 1;
-        $scope.answers_correct += 1;
+        $scope.answersTotal += 1;
+        $scope.answersCorrect += 1;
         diplayAnswerCorrectness();
         displayNewQuestion();
       } else {
@@ -30,13 +30,13 @@ triviaApp.controller("QuestionsController", function QuestionsController($scope)
     }
   }
 
-  $scope.unuseLetter = function(letter_index) {
-    var letter = $scope.question.answerUsedLetters.splice(letter_index, 1)[0];
+  $scope.unuseLetter = function(letterIndex) {
+    var letter = $scope.question.answerUsedLetters.splice(letterIndex, 1)[0];
     $scope.question.answerUnusedLetters.push(letter);
   }
 
   $scope.skipQuestion = function() {
-    $scope.answers_total += 1;
+    $scope.answersTotal += 1;
     displayNewQuestion();
   }
 
@@ -57,16 +57,16 @@ triviaApp.controller("QuestionsController", function QuestionsController($scope)
   }
 
   function getNewQuestion() {
-    var jservice_question = {"id":132294,"answer":"Achilles","question":"In \"Troilus \u0026 Cressida\", this Greek refuses to fight after his pride is injured","value":200,"airdate":"2012-07-16T12:00:00.000Z","created_at":"2015-01-22T02:19:02.331Z","updated_at":"2015-01-22T02:19:02.331Z","category_id":14728,"game_id":3948,"invalid_count":null,"category":{"id":14728,"title":"\"a\"-list literary characters","created_at":"2014-02-14T02:39:09.674Z","updated_at":"2014-02-14T02:39:09.674Z","clues_count":10}};
-    var transformed_question = {
-      id: jservice_question.id,
-      answer: jservice_question.answer.toUpperCase(),
+    var jserviceQuestion = {"id":132294,"answer":"Achilles","question":"In \"Troilus \u0026 Cressida\", this Greek refuses to fight after his pride is injured","value":200,"airdate":"2012-07-16T12:00:00.000Z","created_at":"2015-01-22T02:19:02.331Z","updated_at":"2015-01-22T02:19:02.331Z","category_id":14728,"game_id":3948,"invalid_count":null,"category":{"id":14728,"title":"\"a\"-list literary characters","created_at":"2014-02-14T02:39:09.674Z","updated_at":"2014-02-14T02:39:09.674Z","clues_count":10}};
+    var transformedQuestion = {
+      id: jserviceQuestion.id,
+      answer: jserviceQuestion.answer.toUpperCase(),
       answerUsedLetters: [],
-      answerUnusedLetters: shuffleAnswerLetters(jservice_question.answer.toUpperCase()),
-      question: jservice_question.question,
-      category: jservice_question.category.title
+      answerUnusedLetters: shuffleAnswerLetters(jserviceQuestion.answer.toUpperCase()),
+      question: jserviceQuestion.question,
+      category: jserviceQuestion.category.title
     };
-    return transformed_question;
+    return transformedQuestion;
   }
 
   function shuffleAnswerLetters(answer) {

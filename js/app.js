@@ -9,7 +9,7 @@ triviaApp.controller("QuestionsController", function QuestionsController($scope)
     category: "Fun"
   };
 
-  $scope.questions_total = 0;
-  $scope.questions_correct = 0;
+  $scope.answers_total = 0;
+  $scope.answers_correct = 0;
   $scope.question = welcome_question
 });

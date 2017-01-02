@@ -35,6 +35,11 @@ triviaApp.controller("QuestionsController", function QuestionsController($scope)
     $scope.question.answerUnusedLetters.push(letter);
   }
 
+  $scope.skipQuestion = function() {
+    $scope.answers_total += 1;
+    displayNewQuestion();
+  }
+
   function isUserAnswerCorrect() {
     return $scope.question.answer === $scope.question.answerUsedLetters.join("");
   }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="triviaApp">
 <head>
   <title>Quiz</title>
   <meta charset="UTF-8">
@@ -9,8 +9,9 @@
   <link type="text/css" rel="stylesheet" href="css/style.css">
 
   <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 </head>
-<body>
+<body ng-controller="QuestionsController">
   <header>
     <div class="container">
       <div class="brand">Quiz game</div>
@@ -25,21 +26,21 @@
 
     <div class="container">
       <div class="question">
-        <div class="question__id">Question #0.5</div>
-        <div class="question__category">Category: Fun</div>
-        <div class="question__text z-depth-1">Are you ready?</div>
+        <div class="question__id">Question #{{question.id}}</div>
+        <div class="question__category">Category: {{question.category}}</div>
+        <div class="question__text z-depth-1">{{question.question}}</div>
         <div class="question__skip">
           <button class="btn">Skip</button>
         </div>
         <div class="letters-container z-depth-1">
-          <div class="letters letters--used">
-          </div>
+          <ul class="letters letters--used">
+          </ul>
         </div>
-        <div class="letters letters--unused">
-          <span class="letter z-depth-2">y</span>
-          <span class="letter z-depth-2">e</span>
-          <span class="letter z-depth-2">s</span>
-        </div>
+        <ul class="letters letters--unused">
+          <li ng-repeat="letter in question.answerShuffledLetters" class="letter z-depth-2">
+            {{letter}}
+          </li>
+        </ul>
       </div>
     </div> <!-- container end -->
   </div> <!-- container end -->

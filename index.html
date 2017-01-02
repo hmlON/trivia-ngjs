@@ -34,10 +34,13 @@
         </div>
         <div class="letters-container z-depth-1">
           <ul class="letters letters--used">
+            <li ng-repeat="letter in question.answerUsedLetters track by $index" ng-click="unuseLetter($index)" class="letter z-depth-2">
+              {{letter}}
+            </li>
           </ul>
         </div>
         <ul class="letters letters--unused">
-          <li ng-repeat="letter in question.answerShuffledLetters" class="letter z-depth-2">
+          <li ng-repeat="letter in question.answerUnusedLetters track by $index" ng-click="useLetter($index)" class="letter z-depth-2">
             {{letter}}
           </li>
         </ul>

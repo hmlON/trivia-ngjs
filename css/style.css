@@ -48,6 +48,7 @@ header {
 .letters {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .letter {

@@ -57,7 +57,7 @@ triviaApp.controller("QuestionsController", function QuestionsController($scope)
   }
 
   function getNewQuestion() {
-    var jserviceQuestion = {"id":132294,"answer":"Achilles","question":"In \"Troilus \u0026 Cressida\", this Greek refuses to fight after his pride is injured","value":200,"airdate":"2012-07-16T12:00:00.000Z","created_at":"2015-01-22T02:19:02.331Z","updated_at":"2015-01-22T02:19:02.331Z","category_id":14728,"game_id":3948,"invalid_count":null,"category":{"id":14728,"title":"\"a\"-list literary characters","created_at":"2014-02-14T02:39:09.674Z","updated_at":"2014-02-14T02:39:09.674Z","clues_count":10}};
+    var jserviceQuestion = getJserviceQuestion();
     var transformedQuestion = {
       id: jserviceQuestion.id,
       answer: jserviceQuestion.answer.toUpperCase(),
@@ -67,6 +67,19 @@ triviaApp.controller("QuestionsController", function QuestionsController($scope)
       category: jserviceQuestion.category.title
     };
     return transformedQuestion;
+  }
+
+  function getJserviceQuestion() {
+    var questions;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        questions = this.responseText;
+      }
+    };
+    xhttp.open("GET", "http://jservice.io/api/random", false);
+    xhttp.send();
+    return JSON.parse(questions)[0];
   }
 
   function shuffleAnswerLetters(answer) {

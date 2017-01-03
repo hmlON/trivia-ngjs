@@ -5,7 +5,7 @@ triviaApp.controller("QuestionsController", function QuestionsController($scope)
     id: 0,
     answer: "YES",
     answerUsedLetters: [],
-    answerUnusedLetters: ["Y", "E", "S"],
+    answerUnusedLetters: shuffleAnswerLetters("YES"),
     question: "Are you ready to have some fun?",
     category: "Fun"
   };
@@ -70,6 +70,7 @@ triviaApp.controller("QuestionsController", function QuestionsController($scope)
   }
 
   function shuffleAnswerLetters(answer) {
-    return answer.split("");
+    return answer.split("")
+                 .sort(() => 0.5 - Math.random());
   }
 });

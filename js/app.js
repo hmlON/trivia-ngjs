@@ -2,7 +2,6 @@ var triviaApp = angular.module('triviaApp', []);
 
 triviaApp.controller("QuestionsController", function QuestionsController($scope) {
   var welcomeQuestion = {
-    id: 0,
     answer: "YES",
     answerUsedLetters: [],
     answerUnusedLetters: shuffleAnswerLetters("YES"),
@@ -57,29 +56,27 @@ triviaApp.controller("QuestionsController", function QuestionsController($scope)
   }
 
   function getNewQuestion() {
-    var jserviceQuestion = getJserviceQuestion();
-    var transformedQuestion = {
-      id: jserviceQuestion.id,
-      answer: jserviceQuestion.answer.toUpperCase(),
-      answerUsedLetters: [],
-      answerUnusedLetters: shuffleAnswerLetters(jserviceQuestion.answer.toUpperCase()),
-      question: jserviceQuestion.question,
-      category: jserviceQuestion.category.title
-    };
-    return transformedQuestion;
-  }
-
-  function getJserviceQuestion() {
-    var questions;
+    var response;
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        questions = this.responseText;
-      }
+    do {
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          response = JSON.parse(this.responseText);
+        }
+      };
+      xhttp.open("GET", "https://opentdb.com/api.php?amount=1&type=multiple&encode=url3986", false);
+      xhttp.send();
+    } while (response.response_code !== 0)
+
+    question = response.results[0];
+
+    return {
+      answer: unescape(question.correct_answer).toUpperCase(),
+      answerUsedLetters: [],
+      answerUnusedLetters: shuffleAnswerLetters(unescape(question.correct_answer).toUpperCase()),
+      question: unescape(question.question),
+      category: unescape(question.category)
     };
-    xhttp.open("GET", "http://jservice.io/api/random", false);
-    xhttp.send();
-    return JSON.parse(questions)[0];
   }
 
   function shuffleAnswerLetters(answer) {
